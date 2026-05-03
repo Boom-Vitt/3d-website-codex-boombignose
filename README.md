@@ -6,8 +6,13 @@ Simple profile website for BoomBigNose / Vittawat Sootawee, built with Vite, Rea
 
 - One-page responsive profile site
 - Three.js 3D automation workflow animation
+- Text-only AI news blog at `/blog/`
 - Source-backed content blocks for profile, skills, projects, and contact links
 - Dark tech editorial styling with Thai and English copy
+
+## Blog Updates
+
+AI news cards live in `src/data/blogPosts.js`. The scheduled Codex automation updates this file with recent source-backed AI news, then builds, commits, and pushes changes to `origin main` when new posts are added.
 
 ## Run Locally
 

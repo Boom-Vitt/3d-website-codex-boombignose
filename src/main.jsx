@@ -2,7 +2,9 @@ import React, { useEffect, useRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import {
   ArrowUpRight,
+  BookOpen,
   Bot,
+  CalendarDays,
   BrainCircuit,
   Cpu,
   GraduationCap,
@@ -14,6 +16,7 @@ import {
   Workflow,
 } from 'lucide-react';
 import * as THREE from 'three';
+import { blogPosts } from './data/blogPosts';
 import './styles.css';
 
 const sources = [
@@ -230,21 +233,39 @@ function AutomationScene() {
   return <div className="scene" ref={mountRef} aria-label="3D automation workflow animation" />;
 }
 
-function App() {
+function SiteHeader({ isBlog = false }) {
+  return (
+    <header className="site-header">
+      <a className="brand" href={isBlog ? '/' : '#top'} aria-label="BoomBigNose home">
+        <img className="brand-mark" src="/image/boombignose-logo.png" alt="" />
+        <span>BoomBigNose</span>
+      </a>
+      <nav aria-label="Main navigation">
+        {isBlog ? (
+          <>
+            <a href="/">Home</a>
+            <a href="/#profile">Profile</a>
+            <a href="/#projects">Projects</a>
+            <a href="/#contact">Contact</a>
+          </>
+        ) : (
+          <>
+            <a href="#profile">Profile</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="/blog/">Blog</a>
+            <a href="#contact">Contact</a>
+          </>
+        )}
+      </nav>
+    </header>
+  );
+}
+
+function HomePage() {
   return (
     <main>
-      <header className="site-header">
-        <a className="brand" href="#top" aria-label="BoomBigNose home">
-          <img className="brand-mark" src="/image/boombignose-logo.png" alt="" />
-          <span>BoomBigNose</span>
-        </a>
-        <nav aria-label="Main navigation">
-          <a href="#profile">Profile</a>
-          <a href="#skills">Skills</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </nav>
-      </header>
+      <SiteHeader />
 
       <section className="hero" id="top">
         <div className="hero-copy">
@@ -387,6 +408,63 @@ function App() {
       </footer>
     </main>
   );
+}
+
+function BlogPage() {
+  return (
+    <main className="blog-page">
+      <SiteHeader isBlog />
+
+      <section className="blog-hero">
+        <p className="small-label">BoomBigNose Blog</p>
+        <h1>ข่าว AI ล่าสุดแบบ text-only อ่านง่าย</h1>
+        <p className="lead">
+          สรุปข่าว AI สำคัญสำหรับสาย automation, AI tools และคนที่อยากตามทิศทางเทคโนโลยี
+          โดยเน้นใจความสำคัญและมุมมองที่นำไปใช้กับ workflow ได้ทันที
+        </p>
+        <div className="blog-meta">
+          <span>
+            <CalendarDays size={18} />
+            Daily update target: 09:00
+          </span>
+          <span>
+            <BookOpen size={18} />
+            Text cards only
+          </span>
+        </div>
+      </section>
+
+      <section className="section blog-section" aria-label="AI news cards">
+        <div className="blog-grid">
+          {blogPosts.map((post) => (
+            <article className="blog-card" key={`${post.date}-${post.title}`}>
+              <div className="blog-card-top">
+                <span>{post.date}</span>
+                <a href={post.sourceUrl} target="_blank" rel="noreferrer">
+                  {post.source}
+                  <ArrowUpRight size={16} />
+                </a>
+              </div>
+              <h2>{post.title}</h2>
+              <p>{post.summary}</p>
+              <strong>{post.takeaway}</strong>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <footer>
+        <span>AI news blog</span>
+        <span>Updated from text data in src/data/blogPosts.js</span>
+      </footer>
+    </main>
+  );
+}
+
+function App() {
+  const isBlog = window.location.pathname.startsWith('/blog');
+
+  return isBlog ? <BlogPage /> : <HomePage />;
 }
 
 createRoot(document.getElementById('root')).render(<App />);
