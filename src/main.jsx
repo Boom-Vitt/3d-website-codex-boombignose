@@ -249,7 +249,7 @@ function App() {
       <section className="hero" id="top">
         <div className="hero-copy">
           <p className="small-label">Vittawat Sootawee</p>
-          <h1>AI Automation educator turning repeated work into living workflows.</h1>
+          <h1>นักสอน AI Automation ที่เปลี่ยนงานซ้ำให้กลายเป็น workflow อัจฉริยะ</h1>
           <p className="lead">
             BoomBigNose สอน n8n, AI Agent Automation และการเชื่อมเครื่องมือทำงานจริง
             สำหรับ creator, founder และทีมที่อยากลดงานซ้ำด้วยระบบอัตโนมัติ
