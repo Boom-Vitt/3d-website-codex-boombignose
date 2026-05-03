@@ -73,15 +73,11 @@ main {
 }
 
 .brand-mark {
-  display: grid;
   width: 36px;
   height: 36px;
-  place-items: center;
-  color: var(--ink);
-  background: linear-gradient(135deg, var(--teal), var(--amber));
+  object-fit: cover;
   border-radius: 8px;
-  font-size: 0.82rem;
-  font-weight: 850;
+  box-shadow: 0 0 0 1px rgba(111, 232, 223, 0.2), 0 10px 34px rgba(57, 217, 207, 0.16);
 }
 
 nav {

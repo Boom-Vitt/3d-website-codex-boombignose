@@ -235,7 +235,7 @@ function App() {
     <main>
       <header className="site-header">
         <a className="brand" href="#top" aria-label="BoomBigNose home">
-          <span className="brand-mark">BN</span>
+          <img className="brand-mark" src="/image/boombignose-logo.png" alt="" />
           <span>BoomBigNose</span>
         </a>
         <nav aria-label="Main navigation">
